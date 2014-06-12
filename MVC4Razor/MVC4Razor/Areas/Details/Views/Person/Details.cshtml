@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    
+</hgroup>
+<link href="../../../../Content/kendo/kendo.common.min.css" rel="stylesheet" type="text/css" />
+<link href="../../../../Content/kendo/kendo.default.min.css" rel="stylesheet" type="text/css" />
+<script src="../../../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="../../../../Scripts/kendo/kendo.all.min.js" type="text/javascript"></script>
+
+<article>
+    <br />
+    <br />
+    <fieldset style="float: none; border-width: 20px">
+        <legend style="font-family: Comic Sans MS; font-style: italic; font-size: large">Field
+            Set</legend>
+        <h2>
+            Details</h2>
+        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)
+        The Database Content
+        <ul>
+           @* @foreach (var list in ViewBag.Data)
+            { 
+                <li>
+                    @list </li>
+            }*@
+
+            @(Html.Kendo().Grid((IEnumerable<DatabasePerson.Models.Person>)ViewBag.Data).Name("grid")
+            .Columns(columns => {
+                columns.Bound(person => person.ID);
+                columns.Bound(person => person.Name);
+                columns.Bound(person => person.Country);
+            })
+            .Pageable()
+            .Sortable())
+
+
+           @* @(Html.Kendo().Grid(ViewBag.Data).Pageable().Name("grid").Groupable())
+            @(Html.Kendo().Button().Name("New").Tag("a").SpriteCssClass("k-icon").Content("Icon & Text"))
+            @(Html.Kendo().Button()
+    .Name("textButton")
+    .HtmlAttributes(new { type = "button" })
+    .Content("Text button"))
+            @(Html.Kendo().Button().Name("Button").Content("TextButton").HtmlAttributes(new { type = "button" }))*@
+        </ul>
+    </fieldset>
+</article>
+<aside>
+</aside>
